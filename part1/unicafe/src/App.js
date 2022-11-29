@@ -1,29 +1,23 @@
-const Hello = ({name, age}) => {
-    const bornYear = () => new Date().getFullYear() - age
+import { useState } from "react"
 
-    return (
-        <div>
-            <p>
-                Hello {name}, you are {age} years old
-            </p>
-            <p>
-                So you were probably born in {bornYear()} 
-            </p>
-        </div>
-    )
-}
+const Button = ({onClick, text}) => <button onClick={onClick}>{text}</button>
+
+const Display = ({counter}) => <div>{counter}</div>
+
 
 const App = () => {
-    const name = 'Peter'
-    const age = 10
+    const [ counter , setcounter] = useState(0)
 
-    return(
+    const increaseByOne = () => setcounter(counter + 1)
+    const setZero = () => setcounter(0)
+    
+    return (
         <div>
-            <h1>Greetings</h1>
-            <Hello name='maya' age={16+10} />
-            <Hello name={name} age={age} />
+            <Display counter={counter}/>
+            <Button onClick={increaseByOne} text="plus" />
+            <Button onClick={setZero}  text='zero'/>
         </div>
-    )
+)
 }
 
 export default App
