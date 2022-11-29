@@ -1,23 +1,37 @@
 import { useState } from "react"
 
-const Button = ({onClick, text}) => <button onClick={onClick}>{text}</button>
-
-const Display = ({counter}) => <div>{counter}</div>
-
-
 const App = () => {
-    const [ counter , setcounter] = useState(0)
 
-    const increaseByOne = () => setcounter(counter + 1)
-    const setZero = () => setcounter(0)
-    
+    const [clicks, setClicks] = useState({left:0 , right:0})
+    const [allClicks, setAll] = useState([])
+
+    const leftClick = () => setClicks({...clicks, left: clicks.left + 1})
+    const rightClick = () => setClicks({...clicks, right: clicks.right +1})
+    const handleLeftClick = () => {
+        setAll(allClicks.concat('L'))
+        leftClick()
+    }
+
+    const handleRightClick = () => {
+        setAll(allClicks.concat('R'))
+        rightClick()
+    }
+
+
     return (
         <div>
-            <Display counter={counter}/>
-            <Button onClick={increaseByOne} text="plus" />
-            <Button onClick={setZero}  text='zero'/>
+            {clicks.left}
+            <button onClick={handleLeftClick}>
+                left
+            </button>
+
+            {clicks.right}
+            <button onClick={handleRightClick}>
+                right
+            </button>
+            <p>{allClicks.join(' ')}</p>
         </div>
-)
+    )
 }
 
 export default App
