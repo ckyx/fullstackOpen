@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Header = ({tittle}) => <h1>{tittle}</h1>
+const Header = ({tittle}) => <p>{tittle}</p>
 const Button = ({onClick, text}) => <button onClick={onClick}>{text}</button>
 const Statistics = (props) => {
 
@@ -16,20 +16,23 @@ const Statistics = (props) => {
         )
     }
     return (
+        <div>
         <table>
-        <th>Statistics</th>
+        <tbody>
+        <tr><th>Statistics</th></tr>  
         <StatisticLine text="good" value={props.good} />
         <StatisticLine text="neutral" value={props.neutral} />
         <StatisticLine text="bad" value={props.bad} />
         <StatisticLine text="all" value={all()}/>
         <StatisticLine text="average" value={average()} />
         <StatisticLine text="positive" value={positive()} />
+        </tbody>
         </table>
+        </div>
     )
 }
 
-const StatisticLine = (props) => <p>{props.text} {props.value}</p>
-
+const StatisticLine = (props) => <tr><td>{props.text}</td><td>{props.value}</td></tr>
 
 
 
